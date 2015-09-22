@@ -1,0 +1,4 @@
+services:
+#    casanet.example:
+#        class: UIR\CasanetBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

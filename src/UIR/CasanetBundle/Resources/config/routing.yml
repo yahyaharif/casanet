@@ -1,0 +1,3 @@
+casanet_homepage:
+    path:     /hello
+    defaults: { _controller: CasanetBundle:Default:index }
