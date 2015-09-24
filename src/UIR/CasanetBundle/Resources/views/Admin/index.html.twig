@@ -1,0 +1,261 @@
+{% extends "::base.html.twig" %}
+{% block body %}
+    <div class="section clearfix">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-md-4">
+                    <a href="{{ path('event_new') }}" class="btn btn-white">New event</a>
+                </div>
+                <div class="col-md-4">
+                    <a href="{{ path('article_new') }}" class="btn btn-white">New article</a>
+                </div>
+                <div class="col-md-4">
+                    <a href="{{ path('projconf_new') }}" class="btn btn-white">New Project/Conference</a>
+                </div>
+            </div>
+            <div class="space40"></div>
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                    <div class="tabs-style-2">
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs nav-justified" role="tablist">
+                            <li class="active">
+                                <a href="#events" role="tab" data-toggle="tab"><i class="fa fa-calendar pr-5"></i>Events
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#articles" role="tab" data-toggle="tab"><i class="fa fa-pencil pr-5"></i>Articles
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#projconfs" role="tab" data-toggle="tab"><i class="fa fa-folder-o pr-5"></i>
+                                    Projects and Conferences
+                                </a>
+                            </li>
+                        </ul>
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div class="tab-pane fade in active" id="events">
+                                <h1 class="text-center title">Events</h1>
+
+                                <div class="space-bottom"></div>
+                                <div class="row">
+                                    <table id="eventstable3" class="table table-responsive">
+                                        <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Country</th>
+                                            <th>Start Date</th>
+                                            <th>End Date</th>
+                                            <th>More</th>
+                                            <th>Action</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for event in events %}
+                                            <tr>
+                                                <td>{{ event.name }}</td>
+                                                <td>{{ event.country }}</td>
+                                                <td>{{ event.startdate | date('d/m/Y') }}</td>
+                                                <td>{{ event.enddate | date('d/m/Y') }}</td>
+                                                <td class="text-center">
+                                                    <a class="cursor" data-toggle="modal"
+                                                       data-target=".event{{ event.id }}">
+                                                        <span class="fa fa-external-link"></span>
+                                                    </a>
+                                                </td>
+                                                <td class="text-center">
+                                                    <a href="{{ path('event_edit',{id:event.id}) }}"
+                                                       class="cursor"><span
+                                                                class="fa fa-pencil"></span></a>
+                                                    <a href="{{ path('event_delete',{id:event.id}) }}"
+                                                       class="cursor"><span
+                                                                class="fa fa-trash"></span></a>
+                                                </td>
+                                            </tr>
+                                            <div class="modal fade event{{ event.id }}" tabindex="-1" role="dialog"
+                                                 aria-labelledby="event{{ event.id }}"
+                                                 aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close"
+                                                                    data-dismiss="modal"><span
+                                                                        aria-hidden="true">&times;</span><span
+                                                                        class="sr-only">Close</span></button>
+                                                            <h4 class="modal-title text-center"
+                                                                id="event{{ event.id }}">{{ event.name }}</h4>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <dl class="dl-horizontal">
+                                                                <div class="Space40"></div>
+                                                                <dt>Name</dt>
+                                                                <dd>{{ event.name }}</dd>
+                                                                <div class="Space40"></div>
+                                                                <dt>Country</dt>
+                                                                <dd>{{ event.country }}</dd>
+                                                                <div class="Space40"></div>
+                                                                <dt>Start Date</dt>
+                                                                <dd>{{ event.startdate | date('d/m/Y') }}</dd>
+                                                                <div class="Space40"></div>
+                                                                <dt>End Date</dt>
+                                                                <dd>{{ event.enddate | date('d/m/Y') }}</dd>
+                                                                <div class="Space40"></div>
+                                                                <dt>Description</dt>
+                                                                <dd>{{ event.des }}</dd>
+                                                                <div class="Space40"></div>
+                                                                <dt>Wesbite</dt>
+                                                                <dd>
+                                                                    <a href="http://{{ event.url }}">{{ event.url }}</a>
+                                                                </dd>
+                                                                <div class="Space40"></div>
+                                                                <dt>Members</dt>
+                                                                <dd>
+                                                                    <ul>
+                                                                        {% for element in event.members %}
+                                                                            <li>{{ element }}</li>
+                                                                        {% endfor %}
+                                                                    </ul>
+                                                                </dd>
+                                                                <div class="Space40"></div>
+                                                            </dl>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-sm btn-dark"
+                                                                    data-dismiss="modal">
+                                                                Close
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="articles">
+                                <h1 class="text-center title">Articles</h1>
+
+                                <div class="space-bottom"></div>
+                                <div class="row">
+                                    <table id="articlestable2" class="table table-responsive">
+                                        <thead>
+                                        <tr>
+                                            <th>Title</th>
+                                            <th>Gender</th>
+                                            <th>Date</th>
+                                            <th>Author</th>
+                                            <th>Subject</th>
+                                            <th>Action</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for article in articles %}
+                                            <tr>
+                                                <td>{{ article.title }}</td>
+                                                <td>{{ article.type }}</td>
+                                                <td>{{ article.date | date('d/m/Y') }}</td>
+                                                <td>{{ article.author }}</td>
+                                                <td>{{ article.subject }}</td>
+                                                <td class="text-center">
+                                                    <a href="{{ path('article_edit',{id:article.id}) }}"
+                                                       class="cursor"><span class="fa fa-pencil"></span>
+                                                    </a>
+                                                    <a href="{{ path('article_delete',{id:article.id}) }}"
+                                                       class="cursor"><span class="fa fa-trash"></span>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="projconfs">
+                                <h1 class="text-center title">Projects and Conferences</h1>
+
+                                <div class="space-bottom"></div>
+                                <div class="row">
+                                    <table id="projconftable2" class="table table-responsive">
+                                        <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Website</th>
+                                            <th>More</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for entity in projconfs %}
+                                            <tr>
+                                                <td>{{ entity.name }}</td>
+                                                <td>{{ entity.url }}</td>
+                                                <td class="text-center">
+                                                    <a class="cursor" data-toggle="modal"
+                                                       data-target=".projconf{{ entity.id }}">
+                                                        <span class="fa fa-external-link"></span>
+                                                    </a>
+                                                </td>
+                                                <td class="text-center">
+                                                    <a href="{{ path('projconf_edit',{id:entity.id}) }}"
+                                                       class="cursor"><span class="fa fa-pencil"></span>
+                                                    </a>
+                                                    <a href="{{ path('projconf_delete',{id:entity.id}) }}"
+                                                       class="cursor"><span class="fa fa-trash"></span>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            <div class="modal fade projconf{{ entity.id }}" tabindex="-1" role="dialog"
+                                                 aria-labelledby="projconf{{ entity.id }}"
+                                                 aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close"
+                                                                    data-dismiss="modal"><span
+                                                                        aria-hidden="true">&times;</span><span
+                                                                        class="sr-only">Close</span></button>
+                                                            <h4 class="modal-title text-center"
+                                                                id="projconf{{ entity.id }}">{{ entity.name }}</h4>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="Space40"></div>
+                                                            Here is image.
+                                                            <dl class="dl-horizontal">
+                                                                <div class="Space40"></div>
+                                                                <dt>Name</dt>
+                                                                <dd>{{ entity.name }}</dd>
+                                                                <div class="Space40"></div>
+                                                                <dt>Description</dt>
+                                                                <dd>{{ entity.des }}</dd>
+                                                                <div class="Space40"></div>
+                                                                <dt>Wesbite</dt>
+                                                                <dd>
+                                                                    <a href="http://{{ entity.url }}">{{ entity.url }}</a>
+                                                                </dd>
+                                                                <div class="Space40"></div>
+                                                            </dl>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-sm btn-dark"
+                                                                    data-dismiss="modal">
+                                                                Close
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{ parent() }}
+{% endblock %}

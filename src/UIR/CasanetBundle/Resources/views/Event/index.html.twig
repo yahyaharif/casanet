@@ -1,0 +1,93 @@
+{% extends "::base.html.twig" %}
+{% block body %}
+    <div class="section clearfix">
+        <div class="container">
+            <div class="row">
+                <h1 class="text-center">Events</h1>
+
+                <div class="space70"></div>
+                <div class="col-md-10 col-md-offset-1">
+                    <table id="eventstable2" class="table table-responsive">
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Country</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Find out more</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for entity in entities %}
+                            <tr>
+                                <td>{{ entity.name }}</td>
+                                <td>{{ entity.country }}</td>
+                                <td>{{ entity.startdate | date('d/m/Y') }}</td>
+                                <td>{{ entity.enddate | date('d/m/Y') }}</td>
+                                <td class="text-center">
+                                    <a class="cursor" data-toggle="modal" data-target=".event{{ entity.id }}">
+                                        <span class="fa fa-external-link"></span>
+                                    </a>
+                                </td>
+                            </tr>
+                            <div class="modal fade event{{ entity.id }}" tabindex="-1" role="dialog"
+                                 aria-labelledby="event{{ entity.id }}"
+                                 aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal"><span
+                                                        aria-hidden="true">&times;</span><span
+                                                        class="sr-only">Close</span></button>
+                                            <h4 class="modal-title text-center"
+                                                id="event{{ entity.id }}">{{ entity.name }}</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <dl class="dl-horizontal">
+                                                <div class="Space40"></div>
+                                                <dt>Name</dt>
+                                                <dd>{{ entity.name }}</dd>
+                                                <div class="Space40"></div>
+                                                <dt>Country</dt>
+                                                <dd>{{ entity.country }}</dd>
+                                                <div class="Space40"></div>
+                                                <dt>Start Date</dt>
+                                                <dd>{{ entity.startdate | date('d/m/Y') }}</dd>
+                                                <div class="Space40"></div>
+                                                <dt>End Date</dt>
+                                                <dd>{{ entity.enddate | date('d/m/Y') }}</dd>
+                                                <div class="Space40"></div>
+                                                <dt>Description</dt>
+                                                <dd>{{ entity.des }}</dd>
+                                                <div class="Space40"></div>
+                                                <dt>Wesbite</dt>
+                                                <dd><a href="http://{{ entity.url }}">{{ entity.url }}</a></dd>
+                                                <div class="Space40"></div>
+                                                <dt>Members</dt>
+                                                <dd>
+                                                    <ul>
+                                                        {% for element in entity.members %}
+                                                            <li>{{ element }}</li>
+                                                        {% endfor %}
+                                                    </ul>
+                                                </dd>
+                                                <div class="Space40"></div>
+                                            </dl>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-sm btn-dark" data-dismiss="modal">
+                                                Close
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{ parent() }}
+{% endblock %}

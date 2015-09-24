@@ -1,0 +1,35 @@
+{% extends "::base.html.twig" %}
+{% block body %}
+    <div class="section clearfix">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                    <h1 class="text-center">CasaNET Partners</h1>
+
+                    <div class="space40"></div>
+                    <div class="owl-carousel content-slider-with-controls-autoplay">
+                        <div class="overlay-container">
+                            <img src="https://lubnam.files.wordpress.com/2010/01/11-12-2009-al-akhawayn-university-tour-16.jpg"
+                                 width="1000" alt="">
+
+                            <div class="caption">
+                                <h3 class="title">Al Akhawayn University</h3>
+                                Description 1 - A modifier
+                            </div>
+                        </div>
+                        <div class="overlay-container">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Roy_Gustav_Cullen_Building.JPG"
+                                 width="1000" alt="">
+
+                            <div class="caption">
+                                <h3 class="title">University of Houston - Finir le reste </h3>
+                                Description 2 - A modifier
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{ parent() }}
+{% endblock %}

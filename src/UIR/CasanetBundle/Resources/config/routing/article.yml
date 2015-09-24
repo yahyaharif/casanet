@@ -1,0 +1,30 @@
+articles:
+    path:     /
+    defaults: { _controller: "CasanetBundle:Article:index" }
+
+article_show:
+    path:     /{id}/show
+    defaults: { _controller: "CasanetBundle:Article:show" }
+
+article_new:
+    path:     /new
+    defaults: { _controller: "CasanetBundle:Article:new" }
+
+article_create:
+    path:     /create
+    defaults: { _controller: "CasanetBundle:Article:create" }
+    methods:  POST
+
+article_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "CasanetBundle:Article:edit" }
+
+article_update:
+    path:     /{id}/update
+    defaults: { _controller: "CasanetBundle:Article:update" }
+    methods:  [POST, PUT]
+
+article_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "CasanetBundle:Article:delete" }
+    methods:  [POST, DELETE]

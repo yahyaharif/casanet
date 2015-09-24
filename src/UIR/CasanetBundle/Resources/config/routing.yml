@@ -1,3 +1,35 @@
-casanet_homepage:
-    path:     /hello
+projconfs:
+    resource: "@CasanetBundle/Resources/config/routing/projconf.yml"
+    prefix:   /projconfs
+
+articles:
+    resource: "@CasanetBundle/Resources/config/routing/article.yml"
+    prefix:   /articles
+
+events:
+    resource: "@CasanetBundle/Resources/config/routing/event.yml"
+    prefix:   /events
+
+home:
+    path:     /home
     defaults: { _controller: CasanetBundle:Default:index }
+
+desc:
+    path:     /desc
+    defaults: { _controller: CasanetBundle:Default:desc }
+
+strategy:
+    path:     /strategy
+    defaults: { _controller: CasanetBundle:Default:strategy }
+
+partners:
+    path:     /partners
+    defaults: { _controller: CasanetBundle:Default:partners }
+
+contact:
+    path:     /contact
+    defaults: { _controller: CasanetBundle:Default:contact }
+
+dashboard:
+    path:     /admin/dashboard
+    defaults: { _controller: CasanetBundle:Admin:index }

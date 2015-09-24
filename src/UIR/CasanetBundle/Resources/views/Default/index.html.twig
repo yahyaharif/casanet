@@ -1,4 +1,87 @@
 {% extends "::base.html.twig" %}
 {% block body %}
-    Hello!
+    <div class="banner section white-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5 col-md-offset-1">
+                    <h2 class="object-non-visible text-center" data-animation-effect="fadeInRight"
+                        data-effect-delay="200">Context
+                        Aware Sensor Actuators for Energy Efficient Buildings</h2>
+
+                    <div class="box-style-3 object-non-visible" data-animation-effect="fadeInRight"
+                         data-effect-delay="400">
+                        <p style="text-align: justify;">Recent initiative for constructing Energy-efficient
+                            Buildings aims
+                            to deliver, implement
+                            and optimise building concepts that have the technical, economic and societal potential
+                            to drastically reduce energy consumption. This initiative should have a large payoff, as
+                            it will increase the market for energy-efficient, clean and affordable buildings.
+                            The aim of this project is to develop energy efficient control algorithms to reduce
+                            energy consumption in buildings by using Information and Communications Technology
+                            (ICT). More precisely, the target is to develop ICT-based solutions as an enabler to
+                            improve energy efficiency.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <br>
+                    <center>
+                        <img src="{{ asset('bundles/casanet/images/home.jpg') }}" alt="" class="object-non-visible"
+                             data-animation-effect="fadeInLeft" data-effect-delay="0">
+                    </center>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section text-center clearfix">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <a href="{{ path('desc') }}" class="btn btn-white">Project Description</a>
+                </div>
+                <div class="col-md-3">
+                    <a href="{{ path('desc') }}" class="btn btn-white">Project Objectives</a>
+                </div>
+                <div class="col-md-3">
+                    <a href="{{ path('strategy') }}" class="btn btn-white">Overall Strategy</a>
+                </div>
+                <div class="col-md-3">
+                    <a href="{{ path('desc') }}" class="btn btn-white">Project Outcomes</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="separator"></div>
+    <div class="section clearfix">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                    <h1 class="text-center">Upcoming Events</h1>
+
+                    <div class="space70"></div>
+                    <table id="eventstable1" class="table table-responsive">
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Country</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for entity in entities %}
+                            <tr>
+                                <td>{{ entity.name }}</td>
+                                <td>{{ entity.country }}</td>
+                                <td>{{ entity.startdate | date('d/m/Y') }}</td>
+                                <td>{{ entity.enddate | date('d/m/Y') }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{ parent() }}
 {% endblock %}
