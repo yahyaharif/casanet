@@ -1,15 +1,75 @@
 {% extends '::base.html.twig' %}
 
 {% block body -%}
-    <h1>Article creation</h1>
+    <div class="section clearfix">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                    <fieldset>
+                        <legend>Create a new Article</legend>
+                        {{ form_start(form, {'attr':{'class':'form-horizontal','role':'form'} }) }}
+                        <div class="row">
+                            <div class="col-lg-10 col-lg-offset-1">
+                                <div class="form-group">
+                                    <label for="articlename" class="col-md-4 control-label">Article Name
+                                        <small class="text-default">*</small>
+                                    </label>
 
-    {{ form(form) }}
+                                    <div class="col-md-8">
+                                        {{ form_widget(form.title,{'attr':{'class':'form-control'} }) }}
+                                        {{ form_errors(form.title) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="articletype" class="col-md-4 control-label">Type
+                                        <small class="text-default">*</small>
+                                    </label>
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('articles') }}">
-            Back to the list
-        </a>
-    </li>
-</ul>
+                                    <div class="col-md-8">
+                                        {{ form_widget(form.type,{'attr':{'class':'form-control'} }) }}
+                                        {{ form_errors(form.type) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="articledate" class="col-md-4 control-label">Article Date
+                                        <small class="text-default">*</small>
+                                    </label>
+
+                                    <div class="col-md-8">
+                                        {{ form_widget(form.date,{'attr':{'class':'form-control'} }) }}
+                                        {{ form_errors(form.date) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="articleauthor" class="col-md-4 control-label">Author
+                                        <small class="text-default">*</small>
+                                    </label>
+
+                                    <div class="col-md-8">
+                                        {{ form_widget(form.author,{'attr':{'class':'form-control'} }) }}
+                                        {{ form_errors(form.author) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="articlesubject" class="col-md-4 control-label">Subject
+                                        <small class="text-default">*</small>
+                                    </label>
+
+                                    <div class="col-md-8">
+                                        {{ form_widget(form.subject,{'attr':{'class':'form-control'} }) }}
+                                        {{ form_errors(form.subject) }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <div class="form-group pull-right">
+                        <input type="submit" class="btn btn-default" value="Confirm">
+                        <input type="reset" class="btn btn-gray" value="Reset">
+                    </div>
+                    {{ form_widget(form._token) }}
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

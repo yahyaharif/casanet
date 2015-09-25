@@ -15,12 +15,11 @@ class ProjconfType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
-            ->add('des')
-            ->add('url')
-        ;
+            ->add('name', 'text')
+            ->add('des', 'textarea')
+            ->add('url', 'url');
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */

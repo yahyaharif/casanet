@@ -29,6 +29,7 @@ class ProjconfController extends Controller
             'entities' => $entities,
         ));
     }
+
     /**
      * Creates a new Projconf entity.
      *
@@ -44,12 +45,12 @@ class ProjconfController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('projconf_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('dashboard'));
         }
 
         return $this->render('CasanetBundle:Projconf:new.html.twig', array(
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         ));
     }
 
@@ -79,11 +80,11 @@ class ProjconfController extends Controller
     public function newAction()
     {
         $entity = new Projconf();
-        $form   = $this->createCreateForm($entity);
+        $form = $this->createCreateForm($entity);
 
         return $this->render('CasanetBundle:Projconf:new.html.twig', array(
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         ));
     }
 
@@ -104,7 +105,7 @@ class ProjconfController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('CasanetBundle:Projconf:show.html.twig', array(
-            'entity'      => $entity,
+            'entity' => $entity,
             'delete_form' => $deleteForm->createView(),
         ));
     }
@@ -127,19 +128,19 @@ class ProjconfController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('CasanetBundle:Projconf:edit.html.twig', array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
 
     /**
-    * Creates a form to edit a Projconf entity.
-    *
-    * @param Projconf $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
+     * Creates a form to edit a Projconf entity.
+     *
+     * @param Projconf $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createEditForm(Projconf $entity)
     {
         $form = $this->createForm(new ProjconfType(), $entity, array(
@@ -151,6 +152,7 @@ class ProjconfController extends Controller
 
         return $form;
     }
+
     /**
      * Edits an existing Projconf entity.
      *
@@ -176,11 +178,12 @@ class ProjconfController extends Controller
         }
 
         return $this->render('CasanetBundle:Projconf:edit.html.twig', array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
+
     /**
      * Deletes a Projconf entity.
      *
@@ -218,7 +221,6 @@ class ProjconfController extends Controller
             ->setAction($this->generateUrl('projconf_delete', array('id' => $id)))
             ->setMethod('DELETE')
             ->add('submit', 'submit', array('label' => 'Delete'))
-            ->getForm()
-        ;
+            ->getForm();
     }
 }

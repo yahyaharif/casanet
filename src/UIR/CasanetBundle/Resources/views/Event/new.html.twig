@@ -61,16 +61,6 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="url" class="col-md-4 control-label">End Date
-                                        <small class="text-default">*</small>
-                                    </label>
-
-                                    <div class="col-md-8">
-                                        {{ form_widget(form.url,{'attr':{'class':'form-control'} }) }}
-                                        {{ form_errors(form.url) }}
-                                    </div>
-                                </div>
-                                <div class="form-group">
                                     <label for="url" class="col-md-4 control-label">Website
                                         <small class="text-default">*</small>
                                     </label>
@@ -93,6 +83,11 @@
                             </div>
                         </div>
                     </fieldset>
+                    <div class="form-group pull-right">
+                        <input type="submit" class="btn btn-default" value="Confirm">
+                        <input type="reset" class="btn btn-gray" value="Reset">
+                    </div>
+                    {{ form_widget(form._token) }}
                 </div>
             </div>
         </div>

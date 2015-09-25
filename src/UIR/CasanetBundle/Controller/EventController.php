@@ -44,7 +44,7 @@ class EventController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('event_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('dashboard'));
         }
 
         return $this->render('CasanetBundle:Event:new.html.twig', array(

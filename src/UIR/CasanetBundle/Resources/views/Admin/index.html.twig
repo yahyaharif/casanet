@@ -40,7 +40,7 @@
 
                                 <div class="space-bottom"></div>
                                 <div class="row">
-                                    <table id="eventstable3" class="table table-responsive">
+                                    <table id="eventstable3" class="table table-bordered">
                                         <thead>
                                         <tr>
                                             <th>Name</th>
@@ -139,7 +139,7 @@
 
                                 <div class="space-bottom"></div>
                                 <div class="row">
-                                    <table id="articlestable2" class="table table-responsive">
+                                    <table id="articlestable2" class="table table-bordered">
                                         <thead>
                                         <tr>
                                             <th>Title</th>
@@ -177,7 +177,7 @@
 
                                 <div class="space-bottom"></div>
                                 <div class="row">
-                                    <table id="projconftable2" class="table table-responsive">
+                                    <table id="projconftable2" class="table table-bordered">
                                         <thead>
                                         <tr>
                                             <th>Name</th>
@@ -190,7 +190,7 @@
                                         {% for entity in projconfs %}
                                             <tr>
                                                 <td>{{ entity.name }}</td>
-                                                <td>{{ entity.url }}</td>
+                                                <td><a href="{{ entity.url }}">{{ entity.url }}</a></td>
                                                 <td class="text-center">
                                                     <a class="cursor" data-toggle="modal"
                                                        data-target=".projconf{{ entity.id }}">
@@ -232,7 +232,7 @@
                                                                 <div class="Space40"></div>
                                                                 <dt>Wesbite</dt>
                                                                 <dd>
-                                                                    <a href="http://{{ entity.url }}">{{ entity.url }}</a>
+                                                                    <a href="{{ entity.url }}">{{ entity.url }}</a>
                                                                 </dd>
                                                                 <div class="Space40"></div>
                                                             </dl>
