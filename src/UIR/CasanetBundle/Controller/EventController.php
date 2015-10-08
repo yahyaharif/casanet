@@ -29,6 +29,7 @@ class EventController extends Controller
             'entities' => $entities,
         ));
     }
+
     /**
      * Creates a new Event entity.
      *
@@ -49,7 +50,7 @@ class EventController extends Controller
 
         return $this->render('CasanetBundle:Event:new.html.twig', array(
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         ));
     }
 
@@ -79,11 +80,11 @@ class EventController extends Controller
     public function newAction()
     {
         $entity = new Event();
-        $form   = $this->createCreateForm($entity);
+        $form = $this->createCreateForm($entity);
 
         return $this->render('CasanetBundle:Event:new.html.twig', array(
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         ));
     }
 
@@ -104,7 +105,7 @@ class EventController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('CasanetBundle:Event:show.html.twig', array(
-            'entity'      => $entity,
+            'entity' => $entity,
             'delete_form' => $deleteForm->createView(),
         ));
     }
@@ -127,19 +128,19 @@ class EventController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('CasanetBundle:Event:edit.html.twig', array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
 
     /**
-    * Creates a form to edit a Event entity.
-    *
-    * @param Event $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
+     * Creates a form to edit a Event entity.
+     *
+     * @param Event $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createEditForm(Event $entity)
     {
         $form = $this->createForm(new EventType(), $entity, array(
@@ -151,6 +152,7 @@ class EventController extends Controller
 
         return $form;
     }
+
     /**
      * Edits an existing Event entity.
      *
@@ -172,37 +174,33 @@ class EventController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('event_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('dashboard'));
         }
 
         return $this->render('CasanetBundle:Event:edit.html.twig', array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
+
     /**
      * Deletes a Event entity.
      *
      */
     public function deleteAction(Request $request, $id)
     {
-        $form = $this->createDeleteForm($id);
-        $form->handleRequest($request);
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('CasanetBundle:Event')->find($id);
 
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('CasanetBundle:Event')->find($id);
-
-            if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Event entity.');
-            }
-
-            $em->remove($entity);
-            $em->flush();
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Event entity.');
         }
 
-        return $this->redirect($this->generateUrl('event'));
+        $em->remove($entity);
+        $em->flush();
+
+        return $this->redirect($this->generateUrl('dashboard'));
     }
 
     /**
@@ -218,7 +216,6 @@ class EventController extends Controller
             ->setAction($this->generateUrl('event_delete', array('id' => $id)))
             ->setMethod('DELETE')
             ->add('submit', 'submit', array('label' => 'Delete'))
-            ->getForm()
-        ;
+            ->getForm();
     }
 }

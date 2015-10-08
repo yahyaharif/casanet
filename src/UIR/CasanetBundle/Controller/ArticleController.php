@@ -29,6 +29,7 @@ class ArticleController extends Controller
             'entities' => $entities,
         ));
     }
+
     /**
      * Creates a new Article entity.
      *
@@ -49,7 +50,7 @@ class ArticleController extends Controller
 
         return $this->render('CasanetBundle:Article:new.html.twig', array(
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         ));
     }
 
@@ -79,11 +80,11 @@ class ArticleController extends Controller
     public function newAction()
     {
         $entity = new Article();
-        $form   = $this->createCreateForm($entity);
+        $form = $this->createCreateForm($entity);
 
         return $this->render('CasanetBundle:Article:new.html.twig', array(
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         ));
     }
 
@@ -104,7 +105,7 @@ class ArticleController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('CasanetBundle:Article:show.html.twig', array(
-            'entity'      => $entity,
+            'entity' => $entity,
             'delete_form' => $deleteForm->createView(),
         ));
     }
@@ -127,19 +128,19 @@ class ArticleController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('CasanetBundle:Article:edit.html.twig', array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
 
     /**
-    * Creates a form to edit a Article entity.
-    *
-    * @param Article $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
+     * Creates a form to edit a Article entity.
+     *
+     * @param Article $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createEditForm(Article $entity)
     {
         $form = $this->createForm(new ArticleType(), $entity, array(
@@ -151,6 +152,7 @@ class ArticleController extends Controller
 
         return $form;
     }
+
     /**
      * Edits an existing Article entity.
      *
@@ -172,37 +174,33 @@ class ArticleController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('article_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('dashboard'));
         }
 
         return $this->render('CasanetBundle:Article:edit.html.twig', array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
+
     /**
      * Deletes a Article entity.
      *
      */
     public function deleteAction(Request $request, $id)
     {
-        $form = $this->createDeleteForm($id);
-        $form->handleRequest($request);
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('CasanetBundle:Article')->find($id);
 
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('CasanetBundle:Article')->find($id);
-
-            if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Article entity.');
-            }
-
-            $em->remove($entity);
-            $em->flush();
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Article entity.');
         }
 
-        return $this->redirect($this->generateUrl('article'));
+        $em->remove($entity);
+        $em->flush();
+
+        return $this->redirect($this->generateUrl('dashboard'));
     }
 
     /**
@@ -218,7 +216,6 @@ class ArticleController extends Controller
             ->setAction($this->generateUrl('article_delete', array('id' => $id)))
             ->setMethod('DELETE')
             ->add('submit', 'submit', array('label' => 'Delete'))
-            ->getForm()
-        ;
+            ->getForm();
     }
 }

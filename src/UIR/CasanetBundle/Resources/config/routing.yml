@@ -33,3 +33,6 @@ contact:
 dashboard:
     path:     /admin/dashboard
     defaults: { _controller: CasanetBundle:Admin:index }
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"

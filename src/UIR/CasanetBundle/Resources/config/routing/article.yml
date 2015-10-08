@@ -27,4 +27,3 @@ article_update:
 article_delete:
     path:     /{id}/delete
     defaults: { _controller: "CasanetBundle:Article:delete" }
-    methods:  [POST, DELETE]

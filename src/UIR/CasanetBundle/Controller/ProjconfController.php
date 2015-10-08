@@ -174,7 +174,7 @@ class ProjconfController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('projconf_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('dashboard'));
         }
 
         return $this->render('CasanetBundle:Projconf:edit.html.twig', array(
@@ -190,22 +190,18 @@ class ProjconfController extends Controller
      */
     public function deleteAction(Request $request, $id)
     {
-        $form = $this->createDeleteForm($id);
-        $form->handleRequest($request);
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('CasanetBundle:Projconf')->find($id);
 
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('CasanetBundle:Projconf')->find($id);
-
-            if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Projconf entity.');
-            }
-
-            $em->remove($entity);
-            $em->flush();
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Projconf entity.');
         }
 
-        return $this->redirect($this->generateUrl('projconf'));
+        $em->remove($entity);
+        $em->flush();
+
+
+        return $this->redirect($this->generateUrl('dashboard'));
     }
 
     /**

@@ -1,16 +1,95 @@
 {% extends '::base.html.twig' %}
 
 {% block body -%}
-    <h1>Event edit</h1>
+    <div class="section clearfix">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                    <fieldset>
+                        <legend>Edit an event</legend>
+                        {{ form_start(edit_form, {'attr':{'class':'form-horizontal','role':'form'} }) }}
+                        <div class="row">
+                            <div class="col-lg-10 col-lg-offset-1">
+                                <div class="form-group">
+                                    <label for="eventname" class="col-md-4 control-label">Event Name
+                                        <small class="text-default">*</small>
+                                    </label>
 
-    {{ form(edit_form) }}
+                                    <div class="col-md-8">
+                                        {{ form_widget(edit_form.name,{'attr':{'class':'form-control'} }) }}
+                                        {{ form_errors(edit_form.name) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="eventcountry" class="col-md-4 control-label">Country
+                                        <small class="text-default">*</small>
+                                    </label>
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('event') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+                                    <div class="col-md-8">
+                                        {{ form_widget(edit_form.country,{'attr':{'class':'form-control'} }) }}
+                                        {{ form_errors(edit_form.country) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="eventstart" class="col-md-4 control-label">Start Date
+                                        <small class="text-default">*</small>
+                                    </label>
+
+                                    <div class="col-md-8">
+                                        {{ form_widget(edit_form.startdate,{'attr':{'class':'form-control'} }) }}
+                                        {{ form_errors(edit_form.startdate) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="eventend" class="col-md-4 control-label">End Date
+                                        <small class="text-default">*</small>
+                                    </label>
+
+                                    <div class="col-md-8">
+                                        {{ form_widget(edit_form.enddate,{'attr':{'class':'form-control'} }) }}
+                                        {{ form_errors(edit_form.enddate) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="des" class="col-md-4 control-label">Description
+                                        <small class="text-default">*</small>
+                                    </label>
+
+                                    <div class="col-md-8">
+                                        {{ form_widget(edit_form.des,{'attr':{'class':'form-control'} }) }}
+                                        {{ form_errors(edit_form.des) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="url" class="col-md-4 control-label">Website
+                                        <small class="text-default">*</small>
+                                    </label>
+
+                                    <div class="col-md-8">
+                                        {{ form_widget(edit_form.url,{'attr':{'class':'form-control'} }) }}
+                                        {{ form_errors(edit_form.url) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="url" class="col-md-4 control-label">Members
+                                        <small class="text-default">*</small>
+                                    </label>
+
+                                    <div class="col-md-8">
+                                        {{ form_widget(edit_form.members,{'attr':{'class':'form-control'} }) }}
+                                        {{ form_errors(edit_form.members) }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <div class="form-group pull-right">
+                        <input type="submit" class="btn btn-default" value="Confirm">
+                        <input type="reset" class="btn btn-gray" value="Reset">
+                    </div>
+                    {{ form_widget(edit_form._token) }}
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

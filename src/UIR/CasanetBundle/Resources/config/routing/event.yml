@@ -27,4 +27,3 @@ event_update:
 event_delete:
     path:     /{id}/delete
     defaults: { _controller: "CasanetBundle:Event:delete" }
-    methods:  [POST, DELETE]

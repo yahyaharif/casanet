@@ -27,4 +27,4 @@ projconf_update:
 projconf_delete:
     path:     /{id}/delete
     defaults: { _controller: "CasanetBundle:Projconf:delete" }
-    methods:  [POST, DELETE]
+
